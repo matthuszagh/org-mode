@@ -2441,7 +2441,8 @@ INFO may provide the values of these header arguments (in the
 		  (setq end (copy-marker (point) t))
 		  ;; Possibly wrap result.
 		  (cond
-		   ((assq :wrap (nth 2 info))
+		   ((and (assq :wrap (nth 2 info))
+			 (not (eq (cdr (assq :wrap (nth 2 info))) [])))
 		    (let* ((full (or (cdr (assq :wrap (nth 2 info))) "results"))
 			   (split (split-string full))
 			   (type (car split))
